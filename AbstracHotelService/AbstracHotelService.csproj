@@ -52,6 +52,14 @@
     <Compile Include="BindingModels\PosetitelBindingModel.cs" />
     <Compile Include="BindingModels\UslugaBindingModel.cs" />
     <Compile Include="BindingModels\ZakazBindingModel.cs" />
+    <Compile Include="ImplementationsBD\BaseServiceBD.cs" />
+    <Compile Include="ImplementationsBD\IspolnitelServiceBD.cs" />
+    <Compile Include="ImplementationsBD\PosetitelServiceBD.cs" />
+    <Compile Include="ImplementationsBD\UslugaServiceBD.cs" />
+    <Compile Include="Interfaces\IBaseService.cs" />
+    <Compile Include="Interfaces\IIspolnitelService.cs" />
+    <Compile Include="Interfaces\IPosetitelService.cs" />
+    <Compile Include="Interfaces\IUslugaService.cs" />
     <Compile Include="Migrations\201804152003155_FirstMigration.cs" />
     <Compile Include="Migrations\201804152003155_FirstMigration.Designer.cs">
       <DependentUpon>201804152003155_FirstMigration.cs</DependentUpon>
