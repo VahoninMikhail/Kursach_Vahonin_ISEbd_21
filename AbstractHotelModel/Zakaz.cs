@@ -21,5 +21,11 @@ namespace AbstractHotelModel
         public DateTime DateCreate { get; set; }
 
         public DateTime? DateImplement { get; set; }
+
+        public virtual Posetitel Posetitel { get; set; }
+
+        public virtual Usluga Usluga { get; set; }
+
+        public virtual Ispolnitel Ispolnitel { get; set; }
     }
 }
