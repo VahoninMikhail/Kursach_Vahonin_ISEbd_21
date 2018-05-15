@@ -48,20 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractDbContext.cs" />
-    <Compile Include="BindingModels\IspolnitelBindingModel.cs" />
-    <Compile Include="BindingModels\PosetitelBindingModel.cs" />
-    <Compile Include="BindingModels\UslugaBindingModel.cs" />
-    <Compile Include="BindingModels\ZakazBindingModel.cs" />
-    <Compile Include="Migrations\201804152003155_FirstMigration.cs" />
-    <Compile Include="Migrations\201804152003155_FirstMigration.Designer.cs">
-      <DependentUpon>201804152003155_FirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201805152031576_Migration1.cs" />
+    <Compile Include="Migrations\201805152031576_Migration1.Designer.cs">
+      <DependentUpon>201805152031576_Migration1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\IspolnitelViewModel.cs" />
-    <Compile Include="ViewModels\PosetitelViewModel.cs" />
-    <Compile Include="ViewModels\UslugaViewModel.cs" />
-    <Compile Include="ViewModels\ZakazViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -74,8 +66,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201804152003155_FirstMigration.resx">
-      <DependentUpon>201804152003155_FirstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805152031576_Migration1.resx">
+      <DependentUpon>201805152031576_Migration1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

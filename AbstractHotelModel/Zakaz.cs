@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AbstractHotelModel
 {
@@ -8,18 +10,18 @@ namespace AbstractHotelModel
 
         public int PosetitelId { get; set; }
 
-        public int UslugaId { get; set; }
-
-        public int? IspolnitelId { get; set; }
-
-        public int Count { get; set; }
-
-        public decimal Sum { get; set; }
-
-        public ZakazStatus Status { get; set; }
+        public ZakazStatus ZakazStatus { get; set; }
 
         public DateTime DateCreate { get; set; }
 
-        public DateTime? DateImplement { get; set; }
+        public DateTime DateImplement { get; set; }
+
+        public virtual Posetitel Posetitel { get; set; }
+
+        [ForeignKey("ZakazId")]
+        public virtual List<Oplata> Oplats { get; set; }
+
+        [ForeignKey("ZakazId")]
+        public virtual List<UslugaZakaz> UslugaZakazs { get; set; }
     }
 }

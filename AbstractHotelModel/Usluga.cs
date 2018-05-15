@@ -15,6 +15,6 @@ namespace AbstractHotelModel
         public decimal Price { get; set; }
 
         [ForeignKey("UslugaId")]
-        public virtual List<Zakaz> Zakazs { get; set; }
+        public virtual List<UslugaZakaz> UslugaZakazs { get; set; }
     }
 }

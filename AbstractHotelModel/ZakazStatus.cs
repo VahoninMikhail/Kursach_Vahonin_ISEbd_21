@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AbstractHotelModel
+﻿namespace AbstractHotelModel
 {
     public enum ZakazStatus
     {
-        Принят = 0,
+        Готов = 0,
 
-        Выполняется = 1,
+        Принят_на_оплату = 1,
 
-        Готов = 2,
-
-        Оплачен = 3
+        Оплачен = 2
     }
 }
