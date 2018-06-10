@@ -36,9 +36,49 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,16 +88,52 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractDbContext.cs" />
+    <Compile Include="App\AppId.cs" />
+    <Compile Include="App\AppUser.cs" />
+    <Compile Include="App\AppUserStore.cs" />
+    <Compile Include="BindingModels\AdministratorBindingModel.cs" />
+    <Compile Include="BindingModels\AdministratorCreateBindingModel.cs" />
+    <Compile Include="BindingModels\OplataBindingModel.cs" />
+    <Compile Include="BindingModels\PosetitelBindingModel.cs" />
+    <Compile Include="BindingModels\PosetitelCreateBindingModel.cs" />
+    <Compile Include="BindingModels\RepaymentBindingModel.cs" />
+    <Compile Include="BindingModels\ReportBindingModel.cs" />
+    <Compile Include="BindingModels\UslugaBindingModel.cs" />
+    <Compile Include="BindingModels\UslugaZakazBindingModel.cs" />
+    <Compile Include="BindingModels\ZakazBindingModel.cs" />
+    <Compile Include="ImplementationsBD\AdministratorService.cs" />
+    <Compile Include="ImplementationsBD\PosetitelService.cs" />
+    <Compile Include="ImplementationsBD\ReportService.cs" />
+    <Compile Include="ImplementationsBD\UslugaService.cs" />
+    <Compile Include="ImplementationsBD\ZakazService.cs" />
+    <Compile Include="Interfaces\IAdministratorService.cs" />
+    <Compile Include="Interfaces\IPosetitelService.cs" />
+    <Compile Include="Interfaces\IReportService.cs" />
+    <Compile Include="Interfaces\IUslugaService.cs" />
+    <Compile Include="Interfaces\IZakazService.cs" />
     <Compile Include="Migrations\201805152031576_Migration1.cs" />
     <Compile Include="Migrations\201805152031576_Migration1.Designer.cs">
       <DependentUpon>201805152031576_Migration1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\AdministratorViewModel.cs" />
+    <Compile Include="ViewModels\OplataViewModel.cs" />
+    <Compile Include="ViewModels\PosetitelPogashenieViewModel.cs" />
+    <Compile Include="ViewModels\PosetitelViewModel.cs" />
+    <Compile Include="ViewModels\UslugaViewModel.cs" />
+    <Compile Include="ViewModels\UslugaZakazViewModel.cs" />
+    <Compile Include="ViewModels\ZakazViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Resources\TIMCYR.TTF" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AbstractHotelModel\AbstractHotelModel.csproj">
@@ -68,6 +144,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805152031576_Migration1.resx">
       <DependentUpon>201805152031576_Migration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
