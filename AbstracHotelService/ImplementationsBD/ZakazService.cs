@@ -1,4 +1,5 @@
-﻿using AbstracHotelService.BindingModels;
+﻿using AbstracHotelService;
+using AbstracHotelService.BindingModels;
 using AbstracHotelService.Interfaces;
 using AbstracHotelService.ViewModels;
 using AbstractHotelModel;
@@ -54,9 +55,18 @@ namespace AbstracHotelService.ImplementationsBD
 
                     }
                     await context.SaveChangesAsync();
+                    if (model.Payed > 0)
+                    {
+                        await CreateOplata(new OplataBindingModel
+                        {
+                            ZakazId = element.Id,
+                            Summ = model.Payed
+                        });
+                    }
+
                     await Task.Run(() => transaction.Commit());
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     await Task.Run(() => transaction.Rollback());
                     throw;
@@ -75,7 +85,7 @@ namespace AbstracHotelService.ImplementationsBD
                 Total = rec.Count * rec.Price
             }).ToListAsync();
             var remaind = serviceOrders.Select(rec => rec.Total).DefaultIfEmpty(0).Sum() - context.Oplats.Where(rec => rec.ZakazId == model.ZakazId).Select(rec => rec.Summ).DefaultIfEmpty(0).Sum();
-            if (remaind > model.Summ)
+            if (remaind < model.Summ)
             {
                 var posetitel = await context.Zakazs.Where(rec => rec.Id == model.ZakazId).Select(rec => rec.Posetitel).FirstOrDefaultAsync();
                 if (posetitel != null)
@@ -84,15 +94,16 @@ namespace AbstracHotelService.ImplementationsBD
                 }
                 model.Summ = remaind;
             }
-            var zakaz = await context.Zakazs.FirstOrDefaultAsync(rec => rec.Id == model.ZakazId);
-            if (zakaz != null)
+            var order = await context.Zakazs.FirstOrDefaultAsync(rec => rec.Id == model.ZakazId);
+            if (order != null)
             {
-                zakaz.ZakazStatus = (remaind == model.Summ) ? ZakazStatus.Оплачен : ZakazStatus.Принят_на_оплату;
+                order.ZakazStatus = (remaind == model.Summ) ? ZakazStatus.Оплачен : ZakazStatus.Принят_на_оплату;
             }
             context.Oplats.Add(new Oplata
             {
                 ZakazId = model.ZakazId,
-                Summ = model.Summ
+                Summ = model.Summ,
+                DateCreate = DateTime.Now
             });
             await context.SaveChangesAsync();
         }
@@ -130,7 +141,7 @@ namespace AbstracHotelService.ImplementationsBD
             Zakaz element = await context.Zakazs.FirstOrDefaultAsync(rec => rec.Id == id);
             if (element != null)
             {
-                var serviceZakazs = await context.UslugaZakazs.Where(rec => rec.ZakazId == element.Id).Include(rec => rec.Usluga).Select(rec => new UslugaZakazViewModel
+                var uslugaZakazs = await context.UslugaZakazs.Where(rec => rec.ZakazId == element.Id).Include(rec => rec.Usluga).Select(rec => new UslugaZakazViewModel
                 {
                     Id = rec.Id,
                     UslugaName = rec.Usluga.UslugaName,
@@ -138,7 +149,7 @@ namespace AbstracHotelService.ImplementationsBD
                     Price = rec.Price,
                     Total = rec.Count * rec.Price
                 }).ToListAsync();
-                var sum = serviceZakazs.Select(rec => rec.Total).DefaultIfEmpty(0).Sum();
+                var sum = uslugaZakazs.Select(rec => rec.Total).DefaultIfEmpty(0).Sum();
                 var paid = context.Oplats.Where(rec => rec.ZakazId == element.Id).Select(rec => rec.Summ).DefaultIfEmpty(0).Sum();
                 return new ZakazViewModel
                 {
@@ -147,7 +158,7 @@ namespace AbstracHotelService.ImplementationsBD
                     PosetitelId = element.PosetitelId,
                     DateCreate = element.DateCreate.ToLongDateString(),
                     PogashenieEnd = element.DateCreate.ToLongDateString(),
-                    UslugaZakazs = serviceZakazs,
+                    UslugaZakazs = uslugaZakazs,
                     ZakazStatus = element.ZakazStatus.ToString(),
                     Sum = sum,
                     Paid = paid,
@@ -160,7 +171,7 @@ namespace AbstracHotelService.ImplementationsBD
 
         public async Task<List<ZakazViewModel>> GetList()
         {
-            return await context.Zakazs.Include(rec => rec.Posetitel)
+            return await context.Zakazs.Include(rec => rec.Posetitel)//.Include(rec=>rec.ServiceOrders).Include(rec=>rec.Pays)
                 .Select(rec => new ZakazViewModel
                 {
                     Id = rec.Id,
@@ -181,9 +192,9 @@ namespace AbstracHotelService.ImplementationsBD
                 }).ToListAsync();
         }
 
-        public async Task<List<ZakazViewModel>> GetList(int posetitelId)
+        public async Task<List<ZakazViewModel>> GetList(int clientId)
         {
-            return await context.Zakazs.Where(rec => rec.PosetitelId == posetitelId).Include(rec => rec.Posetitel).Include(rec => rec.UslugaZakazs)
+            return await context.Zakazs.Where(rec => rec.PosetitelId == clientId).Include(rec => rec.Posetitel).Include(rec => rec.UslugaZakazs)
                 .Select(rec => new ZakazViewModel
                 {
                     Id = rec.Id,
@@ -210,4 +221,3 @@ namespace AbstracHotelService.ImplementationsBD
         }
     }
 }
-

@@ -45,8 +45,7 @@ namespace AbstracHotelService.App
 
             public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AppUser, AppId> manager, string authenticationType)
             {
-                var userIdentity = await manager.CreateIdentityAsync(
-                    this, authenticationType);
+                var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
                 return userIdentity;
             }
         }

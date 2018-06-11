@@ -2,9 +2,6 @@
 using AbstracHotelService.Interfaces;
 using Microsoft.AspNet.Identity.Owin;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
@@ -12,7 +9,7 @@ using System.Web.Http;
 
 namespace AbstractHotelRestApi.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Administrator")]
     public class AdministratorController : ApiController
     {
         private readonly IAdministratorService service;
@@ -75,12 +72,5 @@ namespace AbstractHotelRestApi.Controllers
         {
             await service.DelElement(id);
         }
-
-        [HttpPost]
-        public async Task BackUp()
-        {
-            await service.BackUp();
-        }
     }
 }
-

@@ -6,7 +6,7 @@ using System.Web.Http;
 
 namespace AbstractHotelRestApi.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Administrator")]
     public class ZakazController : ApiController
     {
         private readonly IZakazService service;
@@ -29,7 +29,7 @@ namespace AbstractHotelRestApi.Controllers
 
         [HttpGet]
         [Route("api/Zakaz/GetPosetitelList/{posetitelId}")]
-        public async Task<IHttpActionResult> GetClientList(int posetitelId)
+        public async Task<IHttpActionResult> GetPosetitelList(int posetitelId)
         {
             var list = await service.GetList(posetitelId);
             if (list == null)

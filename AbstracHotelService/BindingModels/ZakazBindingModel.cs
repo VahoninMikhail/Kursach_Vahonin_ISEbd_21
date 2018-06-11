@@ -17,6 +17,9 @@ namespace AbstracHotelService.BindingModels
         public DateTime PogashenieEnd { get; set; }
 
         [DataMember]
+        public int Payed { get; set; }
+
+        [DataMember]
         public List<UslugaZakazBindingModel> UslugaZakazs { get; set; }
     }
 }

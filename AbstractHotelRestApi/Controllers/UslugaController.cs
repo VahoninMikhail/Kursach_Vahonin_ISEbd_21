@@ -1,21 +1,16 @@
 ﻿using AbstracHotelService.BindingModels;
 using AbstracHotelService.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace AbstractHotelRestApi.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class ServiceController : ApiController
+    public class UslugaController : ApiController
     {
         private readonly IUslugaService service;
 
-        public ServiceController(IUslugaService service)
+        public UslugaController(IUslugaService service)
         {
             this.service = service;
         }
