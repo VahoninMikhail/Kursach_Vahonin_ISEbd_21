@@ -30,12 +30,12 @@ namespace AbstracHotelService.ImplementationsBD
             Administrator element = await context.Administrators.FirstOrDefaultAsync(rec => rec.AdminFIO == model.AdministratorFIO);
             if (element != null)
             {
-                throw new Exception("Уже есть админ с таким именем");
+                throw new Exception("Уже есть администратор с таким именем");
             }
             element = await context.Administrators.FirstOrDefaultAsync(rec => rec.UserName == model.UserName);
             if (element != null)
             {
-                throw new Exception("Уже есть админ с таким именем пользователя ");
+                throw new Exception("Уже есть администратор с таким именем пользователя ");
             }
             context.Administrators.Add(new Administrator
             {
@@ -131,7 +131,7 @@ namespace AbstracHotelService.ImplementationsBD
                                     (rec.AdminFIO == model.AdministratorFIO || rec.UserName == rec.UserName) && rec.Id != model.Id);
             if (element != null)
             {
-                throw new Exception("Уже есть админ с такими данными");
+                throw new Exception("Уже есть администратор с такими данными");
             }
             element = await context.Administrators.FirstOrDefaultAsync(rec => rec.Id == model.Id);
             if (element == null)
@@ -142,6 +142,5 @@ namespace AbstracHotelService.ImplementationsBD
             element.UserName = model.UserName;
             await context.SaveChangesAsync();
         }
-
     }
 }

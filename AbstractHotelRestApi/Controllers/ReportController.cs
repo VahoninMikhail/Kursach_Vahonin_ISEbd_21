@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace AbstractHotelRestApi.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Administrator")]
     public class ReportController : ApiController
     {
         private readonly IReportService service;
@@ -45,7 +45,7 @@ namespace AbstractHotelRestApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> GetPays(ReportBindingModel model)
+        public async Task<IHttpActionResult> GetOplats(ReportBindingModel model)
         {
             var list = await service.GetPays(model);
             if (list == null)
@@ -56,7 +56,7 @@ namespace AbstractHotelRestApi.Controllers
         }
 
         [HttpPost]
-        public async Task SavePays(ReportBindingModel model)
+        public async Task SaveOplats(ReportBindingModel model)
         {
             model.FontPath = ResourcesPath + "TIMCYR.TTF";
             if (!File.Exists(model.FontPath))
